@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="jumbotron">
+                <h1 class="display-3"></h1>
+              </div>
+    </body>
+    <script>
+    var regEx = /^[2][0-9][0-9]$/
+    //la variable regex se usa para verificar si el valor de estado http devuelto por la peticion es distinto a 2XX
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'http://api.icndb.com/jokes/random/', true);
+    xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){//si la respuesta es 200 y el estado es 4 entonces se muestra el chiste. La validación fue con el ejemplo de la w3schools
+            var textoChiste = JSON.parse(this.response).value.joke;
+            console.log('chiste recibido: ' + textoChiste);
+            var h1s = document.getElementsByTagName('h1');
+            h1s[0].innerHTML = textoChiste;
+        }
+        if (this.readyState == 4 && !regEx.test(this.status))//extrañamante aunque la url no exista el status es 0
+            console.log('se ha presentado un error. Este es el estado de la petición ' + this.status)
+    }
+    xmlhttp.send();
+    </script>
+</html>

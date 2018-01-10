@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="no-js"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="http://code.icndb.com/jquery.icndb.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+    <body>
+        <ul class="list-group"></ul>        
+    </body>
+    <script>
+        /*$.icndb.getRandomJoke((response) => { var textoChiste = response.joke; $('h1').text(textoChiste);});
+        $('h1').text(textoChiste);*/
+        $.icndb.getRandomJokes({ 
+        number: 10, 
+        success: (response) => {
+        response.forEach(element => { $("ul").append('<li class="list-group-item">' + element.joke + '</li>'); });
+        }});
+        /*$.icndb.getRandomJokes({ 
+        number: 10, 
+        success: function(response) {
+        response.forEach(element => { $("ul").append('<li class="list-group-item">' + element.joke + '</li>'); });
+        }});*/
+
+    </script>
+</html>
